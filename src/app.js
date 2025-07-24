@@ -24,7 +24,7 @@ const PORT=process.env.PORT||4000
 app.use(express.json())
 app.use(express.static('public'))
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://tu-front-en-vercel.vercel.app'],
+  origin: ['http://localhost:5173', 'https://final-interfaces-front.vercel.app/'],
   credentials: true,
 }))
 
