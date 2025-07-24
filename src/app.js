@@ -24,9 +24,21 @@ const PORT=process.env.PORT||4000
 app.use(express.json())
 app.use(express.static('public'))
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://final-interfaces-front.vercel.app/'],
-  credentials: true,
-}))
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'https://final-interfaces-front.vercel.app'
+    ];
+
+    // Permitir requests sin "origin" (como Postman o curl)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('❌ No permitido por CORS'));
+    }
+  },
+  credentials: true
+}));
 
 app.use('/api/usuario',userRouter)
 app.use('/api/producto',productRouter )
