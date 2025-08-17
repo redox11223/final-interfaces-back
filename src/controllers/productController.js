@@ -57,12 +57,12 @@ export const createProduct = async (req, res) => {
 
 export const editProduct = async (req, res) => {
   const { nombre, precio, descripcion, categoria } = req.body;
-  const { id_producto } = req.params;
+  const { id } = req.params;
   if (!nombre || !precio || !descripcion || !categoria) {
     return res.status(400).json({ message: "Faltan campos requeridos" });
   }
   try {
-    const result = await edit(id_producto, {
+    const result = await edit(id, {
       nombre,
       precio,
       descripcion,
